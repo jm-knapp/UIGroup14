@@ -16,7 +16,7 @@ class LatestProductsList(APIView):
         print(data)
         return Response(serializer.data)
 
-#Finish this.
+#Custom class to pull items on sale. Need to build On Sale Vue Page still.
 class OnSaleProductsList(APIView):
     def get(self, request, format=None):
         products = Product.objects.filter(onSale=True)
