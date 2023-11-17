@@ -30,7 +30,7 @@
     </table>
   </div>
   <div class="source">
-    <p>Source for base code: https://www.youtube.com/watch?v=Yg5zkd9nm6w</p>
+    <p>Source tutorial for base code used in project: </p><a href="https://www.youtube.com/watch?v=Yg5zkd9nm6w">https://www.youtube.com/watch?v=Yg5zkd9nm6w</a>
   </div>
 
 </template>
@@ -41,10 +41,6 @@
    margin-bottom: 30px;
    text-align: center;
    text-decoration: underline;
-}
-
-.madeby {
-
 }
 
 .source {

@@ -2,6 +2,7 @@
     <tr>
         <td><router-link :to="item.product.get_absolute_url">{{ item.product.name }}</router-link></td>
         <td>${{ item.product.price }}</td>
+        <td class="discount">0%</td>
         <td>
             {{ item.quantity }}
             <a @click="decrementQuantity(item)">-</a>
@@ -26,7 +27,6 @@ export default {
     methods: {
         //Can probably modify the below for discounts
         getItemTotal(item) {
-            //Console.log(JSON.stringify())
             if(item.salePercentAsDeci != null){
                 return item.quantity * item.product.price * (1-item.salePercentAsDeci)
             }else{

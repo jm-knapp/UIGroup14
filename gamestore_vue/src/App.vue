@@ -108,6 +108,7 @@
         </section>
 
         <footer class="footer">
+            <p class="aboutlink"><router-link to="/about">About This Site!</router-link></p>
             <p class="has-text-centered">Copyright (c) 2023</p>
         </footer>
     </div>
@@ -156,6 +157,9 @@ export default {
 <style lang="scss">
 @import "../node_modules/bulma";
 
+.aboutlink{
+  text-align: center;
+}
 .lds-dual-ring {
     display: inline-block;
     width: 80px;

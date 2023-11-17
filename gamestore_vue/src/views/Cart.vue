@@ -11,6 +11,7 @@
                         <tr>
                             <th>Product</th>
                             <th>Price</th>
+                            <th>Discount %</th>
                             <th>Quantity</th>
                             <th>Total</th>
                             <th></th>
