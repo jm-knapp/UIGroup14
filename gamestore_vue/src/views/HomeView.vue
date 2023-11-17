@@ -30,7 +30,7 @@
       </div>
 
         <ProductBox
-          v-for="product in latestProducts"
+          v-for="product in onSaleProducts"
           v-bind:key="product.id"
           v-bind:product="product" />
 
@@ -47,7 +47,8 @@ export default {
   name: 'HomeView',
   data() {
     return{
-      latestProducts: []
+      latestProducts: [],
+      onSaleProducts: []
     }
   },
   components: {
@@ -55,6 +56,7 @@ export default {
   },
   mounted(){
     this.getLatestProducts()
+    this.getOnSaleProducts()
 
     document.title = ' Homepage <> Game Item Shop!'
   },
@@ -72,7 +74,18 @@ export default {
       })
 
       this.$store.commit('setIsLoading', false)
+    },
+    async getOnSaleProducts(){
+      axios.get('/api/v1/on-sale/')
+      .then(response =>{
+        this.onSaleProducts = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
+
+
   }
 }
 </script>

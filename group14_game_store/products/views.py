@@ -1,4 +1,5 @@
 from django.http import Http404
+import json
 from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -11,12 +12,18 @@ class LatestProductsList(APIView):
         #The 0:4 gets the 4 most recent products
         products = Product.objects.all()[0:4]
         serializer = ProductSerializer(products, many=True)
+        data = json.dumps(serializer.data)
+        print(data)
         return Response(serializer.data)
 
 #Finish this.
 class OnSaleProductsList(APIView):
     def get(self, request, format=None):
-        products = Product.objects.get()
+        products = Product.objects.filter(onSale=True)
+        serializer = ProductSerializer(products, many=True)
+        data = json.dumps(serializer.data)
+        print(data)
+        return Response(serializer.data)
 
 class ProductDetail(APIView):
     def get_object(self, category_slug, product_slug):

@@ -75,7 +75,11 @@ export default {
         //May need to modify this too for a discount
         cartTotalPrice() {
             return this.cart.items.reduce((acc, curVal) => {
-                return acc += curVal.product.price * curVal.quantity
+                if(curVal.product.salePercentAsDeci != null){
+                    return acc += (curVal.product.price * curVal.quantity) * (1-curVal.product.salePercentAsDeci)
+                }else{
+                    return acc += curVal.product.price * curVal.quantity
+                }
             }, 0)
         },
     }

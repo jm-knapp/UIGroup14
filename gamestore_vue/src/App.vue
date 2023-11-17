@@ -44,7 +44,7 @@
                 <template v-if="$store.state.isAuthenticated">
                   <router-link to="/my-account" class="button is-light">My Account</router-link> 
                 </template>
-                <template>
+                <template v-else>
                   <router-link to="/log-in" class="button is-light">Log in</router-link>
                 </template>
                 

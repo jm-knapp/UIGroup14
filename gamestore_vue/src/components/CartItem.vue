@@ -26,7 +26,13 @@ export default {
     methods: {
         //Can probably modify the below for discounts
         getItemTotal(item) {
-            return item.quantity * item.product.price
+            //Console.log(JSON.stringify())
+            if(item.salePercentAsDeci != null){
+                return item.quantity * item.product.price * (1-item.salePercentAsDeci)
+            }else{
+                return item.quantity * item.product.price
+            }
+            
         },
         decrementQuantity(item) {
             item.quantity -= 1
