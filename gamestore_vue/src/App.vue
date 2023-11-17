@@ -44,7 +44,7 @@
                 <template v-if="$store.state.isAuthenticated">
                   <router-link to="/my-account" class="button is-light">My Account</router-link> 
                 </template>
-                <template>
+                <template v-else>
                   <router-link to="/log-in" class="button is-light">Log in</router-link>
                 </template>
                 
@@ -118,7 +118,7 @@ export default {
 <style lang="scss">
 @import '../node_modules/bulma';
 
-.lds-daul-ring{
+.lds-dual-ring{
   display: inline-block;
   width: 80px;
   height: 80px;
@@ -145,6 +145,9 @@ export default {
 }
 
 .is-loading-bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 0;
   overflow: hidden;
 
