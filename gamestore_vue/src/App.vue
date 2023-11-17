@@ -118,7 +118,7 @@ export default {
 <style lang="scss">
 @import '../node_modules/bulma';
 
-.lds-daul-ring{
+.lds-dual-ring{
   display: inline-block;
   width: 80px;
   height: 80px;
@@ -145,6 +145,9 @@ export default {
 }
 
 .is-loading-bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 0;
   overflow: hidden;
 
