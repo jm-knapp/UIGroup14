@@ -2,76 +2,103 @@
     <div class="page-category">
         <div class="columns is-multiline">
             <div class="column is-12">
-                <h2 class="is-size-2 has-text-centered"> {{ category.name }}</h2>
+                <h2 class="is-size-2 has-text-centered">{{ category.name }}</h2>
+                <div class="field">
+                    <label class="label">Sort by:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select v-model="sortOption" @change="sortProducts">
+                                <option value="highestToLowest">
+                                    High To Low
+                                </option>
+                                <option value="lowestToHighest">
+                                    Low To High
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <ProductBox
-                v-for="product in category.products"
-                v-bind:key="product.id"
-                v-bind:product="product" />
+                v-for="product in sortedProducts"
+                :key="product.id"
+                :product="product"
+            />
         </div>
     </div>
-    
 </template>
 
 <script>
-import axios from 'axios'
-import { toast } from 'bulma-toast'
+import axios from "axios";
+import { toast } from "bulma-toast";
 
-import ProductBox from '@/components/ProductBox'
+import ProductBox from "@/components/ProductBox";
 
-export default{
-    name: 'Category',
+export default {
+    name: "Category",
     components: {
-        ProductBox
+        ProductBox,
     },
-    data(){
-        return{
+    data() {
+        return {
             category: {
-                products: []
-            }
-        }
+                products: [],
+            },
+            sortOption: "highestToLowest", // Set default to 'highestToLowest'
+        };
     },
-    mounted(){
-        this.getCategory()
+    mounted() {
+        this.getCategory();
     },
     watch: {
         $route(to, from) {
-            if (to.name === 'Category') {
-                this.getCategory()
+            if (to.name === "Category") {
+                this.getCategory();
             }
-        }
+        },
+    },
+    computed: {
+        sortedProducts() {
+            const sorted = [...this.category.products];
+            if (this.sortOption === "highestToLowest") {
+                sorted.sort((a, b) => b.price - a.price);
+            } else if (this.sortOption === "lowestToHighest") {
+                sorted.sort((a, b) => a.price - b.price);
+            }
+            return sorted;
+        },
     },
     methods: {
-        async getCategory(){
-            const categorySlug = this.$route.params.category_slug
+        async getCategory() {
+            const categorySlug = this.$route.params.category_slug;
 
-            this.$store.commit('setIsLoading', true)
+            this.$store.commit("setIsLoading", true);
 
             axios
                 .get(`/api/v1/products/${categorySlug}/`)
-                .then(response => {
-                    this.category = response.data
-
-                    document.title = this.category.name + ' <> Game Item Shop!'
+                .then((response) => {
+                    this.category = response.data;
+                    document.title = this.category.name + " <> Game Item Shop!";
                 })
-                .catch(error => {
-                    console.log(error)
+                .catch((error) => {
+                    console.log(error);
 
                     toast({
-                        message: 'Something went wrong. Please try again.',
-                        type: 'is-danger',
+                        message: "Something went wrong. Please try again.",
+                        type: "is-danger",
                         dismissible: true,
                         pauseOnHover: true,
                         duration: 2000,
-                        position: 'bottom-right',
-                    })
-                })
+                        position: "bottom-right",
+                    });
+                });
 
-            this.$store.commit('setIsLoading', false)
-
-
-        }
-    }
-}
+            this.$store.commit("setIsLoading", false);
+        },
+        sortProducts() {
+            // Triggered when the sorting option changes
+        },
+    },
+};
 </script>

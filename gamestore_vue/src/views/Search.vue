@@ -3,60 +3,91 @@
         <div class="columns is-multiline">
             <div class="column is-12">
                 <h1 class="title">Search</h1>
-                <h2 class="is-size-5 has-text-grey">Search term: "{{ query }}"</h2>
+                <h2 class="is-size-5 has-text-grey">
+                    Search term: "{{ query }}"
+                </h2>
+                <div class="field">
+                    <label class="label">Sort by:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select v-model="sortOption" @change="sortProducts">
+                                <option value="lowestToHighest">
+                                    Low To High
+                                </option>
+                                <option value="highestToLowest">
+                                    High To Low
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <ProductBox
-             v-for="product in products"
-             v-bind:key="product.id"
-             v-bind:product="product" />
+                v-for="product in sortedProducts"
+                :key="product.id"
+                :product="product"
+            />
         </div>
     </div>
 </template>
 
 <script>
-import axio from 'axios'
-import ProductBox from '@/components/ProductBox.vue';
-import axios from 'axios';
+import axios from "axios";
+import ProductBox from "@/components/ProductBox.vue";
 
 export default {
-    name: 'Search',
+    name: "Search",
     components: {
-        ProductBox
+        ProductBox,
     },
-    data () {
-        return{
+    data() {
+        return {
             products: [],
-            query: ''
+            query: "",
+            sortOption: "highestToLowest", // Set default to 'highestToLowest'
+        };
+    },
+    mounted() {
+        document.title = "Search Page <> Game Item Shop!";
+
+        let uri = window.location.search.substring(1);
+        let params = new URLSearchParams(uri);
+
+        if (params.get("query")) {
+            this.query = params.get("query");
+            this.performSearch();
         }
     },
-    mounted(){
-        document.title = 'Search Page <> Game Item Shop!'
-
-        let uri=window.location.search.substring(1)
-        let params = new URLSearchParams(uri)
-
-        if (params.get('query')){
-            this.query = params.get('query')
-
-            this.performSearch()
-        }
+    computed: {
+        sortedProducts() {
+            const sorted = [...this.products];
+            if (this.sortOption === "lowestToHighest") {
+                sorted.sort((a, b) => a.price - b.price);
+            } else if (this.sortOption === "highestToLowest") {
+                sorted.sort((a, b) => b.price - a.price);
+            }
+            return sorted;
+        },
     },
     methods: {
         async performSearch() {
-            this.$store.commit('setIsLoading', true)
+            this.$store.commit("setIsLoading", true);
 
             await axios
-                .post('/api/v1/products/search/', {'query': this.query})
-                .then(response => {
-                    this.products = response.data
+                .post("/api/v1/products/search/", { query: this.query })
+                .then((response) => {
+                    this.products = response.data;
                 })
-                .catch(error => {
-                    console.log(error)
-                })
+                .catch((error) => {
+                    console.log(error);
+                });
 
-            this.$store.commit('setIsLoading', false)
-        }
-    }
-}
+            this.$store.commit("setIsLoading", false);
+        },
+        sortProducts() {
+            // Triggered when the sorting option changes
+        },
+    },
+};
 </script>
