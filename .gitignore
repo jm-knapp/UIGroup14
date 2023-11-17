@@ -15,3 +15,4 @@ var/
 .installed.cfg
 *.egg
 node_modules
+venv

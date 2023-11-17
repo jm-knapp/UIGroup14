@@ -12,10 +12,10 @@
                         <div class="select">
                             <select v-model="sortOption" @change="sortProducts">
                                 <option value="lowestToHighest">
-                                    Low To High
+                                    Price : Low To High
                                 </option>
                                 <option value="highestToLowest">
-                                    High To Low
+                                    Price : High To Low
                                 </option>
                             </select>
                         </div>
