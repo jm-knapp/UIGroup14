@@ -3,8 +3,7 @@
         <nav class="navbar is-dark">
             <div class="navbar-brand">
                 <router-link to="/" class="navbar-item" id="nav-name"
-                    ><strong>Game Shop!</strong></router-link
-                >
+                    ><strong>Game Shop!</strong></router-link>
 
                 <a
                     class="navbar-burger"
@@ -57,14 +56,13 @@
 
                         <div class="navbar-dropdown">
                             <router-link to="/Cosmetics" class="navbar-item"
-                                >Cosmetics</router-link
-                            >
+                                >Cosmetics</router-link>
                             <router-link to="/Boosts" class="navbar-item"
-                                >Boosts</router-link
-                            >
+                                >Boosts</router-link>
                             <router-link to="/Consumables" class="navbar-item"
-                                >Consumables</router-link
-                            >
+                                >Consumables</router-link>
+                            <router-link to="/weapons" class="navbar-item"
+                                >Weapons</router-link>
                         </div>
                     </div>
 
@@ -88,8 +86,7 @@
                             <router-link
                                 to="/cart"
                                 class="button is-custom-search-button"
-                                >Cart ({{ cartTotalLength }})</router-link
-                            >
+                                >Cart ({{ cartTotalLength }})</router-link>
                         </div>
                     </div>
                 </div>

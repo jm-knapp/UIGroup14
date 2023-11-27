@@ -27,16 +27,16 @@ def checkout(request):
             charge = stripe.Charge.create(
                 amount=int(paid_amount * 100),
                 currency='USD',
-                description='Charge from Game Item Shop',
+                description='Charge from Djackets',
                 source=serializer.validated_data['stripe_token']
             )
 
             serializer.save(user=request.user, paid_amount=paid_amount)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-            
         except Exception:
-            return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class OrdersList(APIView):

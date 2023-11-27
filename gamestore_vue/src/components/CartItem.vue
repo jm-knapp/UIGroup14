@@ -1,15 +1,15 @@
 <template>
     <tr>
-        <td><router-link :to="item.product.get_absolute_url">{{ item.product.name }}</router-link></td>
-        <td>${{ item.product.price }}</td>
-        <td class="discount">0%</td>
-        <td>
+        <td class="has-text-left"><router-link :to="item.product.get_absolute_url">{{ item.product.name }}</router-link></td>
+        <td class="has-text-left">${{ item.product.price }}</td>
+        <td class="has-text-left">{{ item.product.salePercentAsDeci !==0 ? (item.product.salePercentAsDeci*100) + '%' : '0%' }}</td>
+        <td class="has-text-left">
             {{ item.quantity }}
             <a @click="decrementQuantity(item)">-</a>
             <a @click="incrementQuantity(item)">+</a>
         </td>
-        <td>${{ getItemTotal(item).toFixed(2) }}</td>
-        <td><button class="delete" @click="removeFromCart(item)"></button></td>
+        <td class="has-text-left">${{ getItemTotal(item).toFixed(2) }}</td>
+        <td class="has-text-left"><button class="delete" @click="removeFromCart(item)"></button></td>
     </tr>
 </template>
 
@@ -27,8 +27,8 @@ export default {
     methods: {
         //Can probably modify the below for discounts
         getItemTotal(item) {
-            if(item.salePercentAsDeci != null){
-                return item.quantity * item.product.price * (1-item.salePercentAsDeci)
+            if(item.product.salePercentAsDeci > 0){
+                return item.quantity * item.product.price * (1-item.product.salePercentAsDeci)
             }else{
                 return item.quantity * item.product.price
             }

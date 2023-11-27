@@ -153,9 +153,8 @@ export default {
     },
     methods: {
             getItemTotal(item) {
-            console.out(item.onSale)
-            if(item.onSale){
-                return item.quantity * item.product.price * (1-item.salePercentAsDeci)
+            if(item.product.salePercentAsDeci > 0){
+                return item.quantity * item.product.price * (1-item.product.salePercentAsDeci)
             }else{
                 return item.quantity * item.product.price
             }
