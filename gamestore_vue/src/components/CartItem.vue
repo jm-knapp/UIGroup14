@@ -5,8 +5,10 @@
         <td class="has-text-left">{{ item.product.salePercentAsDeci !==0 ? (item.product.salePercentAsDeci*100) + '%' : '0%' }}</td>
         <td class="has-text-left">
             {{ item.quantity }}
-            <a @click="decrementQuantity(item)">-</a>
-            <a @click="incrementQuantity(item)">+</a>
+            <a @click="decrementQuantity(item)" class="is-size-4 has-text-weight-bold">
+                <span class="extendMinus">-</span>
+            </a>
+            <a @click="incrementQuantity(item)" class="is-size-4 has-text-weight-bold"> +</a>
         </td>
         <td class="has-text-left">${{ getItemTotal(item).toFixed(2) }}</td>
         <td class="has-text-left"><button class="delete" @click="removeFromCart(item)"></button></td>
@@ -59,3 +61,10 @@ export default {
     },
 }
 </script>
+
+<style lang="scss">
+    .extendMinus::before{
+        content: "\00a0\00a0";
+        display: inline-block;
+    }
+</style>
