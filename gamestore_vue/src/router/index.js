@@ -10,6 +10,7 @@ import LogIn from '../views/LogIn.vue'
 import MyAccount from '../views/MyAccount.vue'
 import Checkout from '../views/Checkout.vue'
 import Success from '../views/Success.vue'
+import AllProducts from '../views/AllProducts.vue'
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: Search
+  },
+  {
+    path: '/AllProducts',
+    name: 'AllProducts',
+    component: AllProducts
   },
   {
     path: '/cart',

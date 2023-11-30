@@ -16,6 +16,15 @@ class LatestProductsList(APIView):
         print(data)
         return Response(serializer.data)
 
+class AllProductsList(APIView):
+    def get(self, request, format=None):
+        #Getting all products
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        data = json.dumps(serializer.data)
+        print(data)
+        return Response(serializer.data)
+
 #Custom class to pull items on sale. Need to build On Sale Vue Page still.
 class OnSaleProductsList(APIView):
     def get(self, request, format=None):

@@ -55,6 +55,8 @@
                         <a class="navbar-link"> Categories </a>
 
                         <div class="navbar-dropdown">
+                            <router-link to="/AllProducts" class="navbar-item"
+                                >All Products</router-link>
                             <router-link to="/Cosmetics" class="navbar-item"
                                 >Cosmetics</router-link>
                             <router-link to="/Boosts" class="navbar-item"
