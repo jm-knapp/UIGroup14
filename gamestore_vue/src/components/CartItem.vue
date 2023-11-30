@@ -13,7 +13,7 @@
             </button>
         </td>
         <td class="has-text-left">${{ getItemTotal(item).toFixed(2) }}</td>
-        <td class="has-text-left"><button class="delete" @click="removeFromCart(item)"></button></td>
+        <td class="has-text-left"><button class="delete" @click="removeFromCart(item)" aria-label="Remove Item"></button></td>
     </tr>
 </template>
 

@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="control">
-                                <button class="button is-custom-search-button">
+                                <button class="button is-custom-search-button" aria-label="Search">
                                     <span class="icon">
                                         <i class="fas fa-search"></i>
                                     </span>
