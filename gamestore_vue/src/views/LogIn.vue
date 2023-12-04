@@ -151,6 +151,7 @@ export default {
                         this.errors.push(
                             "Something went wrong. Please try again"
                         );
+                        notificationAlert('Something went wrong and an error occurred. Please try again.')
 
                         console.log(JSON.stringify(error));
                     }
@@ -158,4 +159,11 @@ export default {
         },
     },
 };
+
+function notificationAlert(message){
+    let liveRegion = document.getElementById('live-region');
+    liveRegion.textContent = message;
+    liveRegion.setAttribute('aria-live', 'assertive');
+    liveRegion.focus();
+}
 </script>

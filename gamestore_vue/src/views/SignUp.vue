@@ -38,7 +38,7 @@
 
                     <hr>
 
-                    Or <router-link to="/log-in">click here</router-link> to log in!
+                    Or <router-link to="/log-in">click this to login here!</router-link>
                 </form>
             </div>
         </div>
@@ -60,7 +60,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'Sign up <> Djackets'
+        document.title = 'Sign up <> Game Item Shop!'
     },
     methods: {
         submitForm() {
@@ -68,14 +68,17 @@ export default {
 
             if (this.username === '') {
                 this.errors.push('The username is missing')
+                notificationAlert('The username is missing')
             }
 
             if (this.password === '') {
                 this.errors.push('The password is too short')
+                notificationAlert('The password is too short')
             }
 
             if (this.password !== this.password2) {
-                this.errors.push('The passwords doesn\'t match')
+                this.errors.push('The passwords don\'t match')
+                notificationAlert('The passwords don\'t match')
             }
 
             if (!this.errors.length) {
@@ -107,6 +110,7 @@ export default {
                             console.log(JSON.stringify(error.response.data))
                         } else if (error.message) {
                             this.errors.push('Something went wrong. Please try again')
+                            notificationAlert('Something went wrong, an error occurred. Please try again.')
                             
                             console.log(JSON.stringify(error))
                         }
@@ -114,5 +118,12 @@ export default {
             }
         }
     }
+}
+
+function notificationAlert(message){
+    let liveRegion = document.getElementById('live-region');
+    liveRegion.textContent = message;
+    liveRegion.setAttribute('aria-live', 'assertive');
+    liveRegion.focus();
 }
 </script>

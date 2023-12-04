@@ -13,14 +13,17 @@
                     </span>
                     <span v-else>${{ product.price }}</span>    
                 </p>
-          
-                <router-link v-bind:to="product.get_absolute_url" class="button is-dark mt-4">View details</router-link>
+                <router-link v-bind:to="product.get_absolute_url" class="button is-dark mt-4" :aria-label="'View ' + product.name + ' details'">View details</router-link>
+
           
             </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { toast } from 'bulma-toast'
+
 export default {
     name: 'ProductBox',
     props: {
@@ -29,10 +32,15 @@ export default {
     computed: {
         salePrice(){
             return this.product.price * (1-this.product.salePercentAsDeci)
+        },
+    },
+    methods: {
+        generateDetailsLabel(name){
+            return 'View ${name} details'
         }
     }
-
 }
+
 </script>
 
 <style scoped>
@@ -45,5 +53,6 @@ export default {
     text-decoration: line-through;
     color: #808080;
   }
+
 
 </style>

@@ -48,28 +48,28 @@
                         <div class="field">
                             <label>First name*</label>
                             <div class="control">
-                                <input type="text" class="input" v-model="first_name">
+                                <input type="text" class="input" v-model="first_name" aria-label="Enter First Name Field">
                             </div>
                         </div>
 
                         <div class="field">
                             <label>Last name*</label>
                             <div class="control">
-                                <input type="text" class="input" v-model="last_name">
+                                <input type="text" class="input" v-model="last_name" aria-label="Enter Last Name Field">
                             </div>
                         </div>
 
                         <div class="field">
                             <label>E-mail*</label>
                             <div class="control">
-                                <input type="email" class="input" v-model="email">
+                                <input type="email" class="input" v-model="email" aria-label="Enter eamil Field">
                             </div>
                         </div>
 
                         <div class="field">
                             <label>Phone*</label>
                             <div class="control">
-                                <input type="text" class="input" v-model="phone">
+                                <input type="text" class="input" v-model="phone" aria-label="Enter phone number Field">
                             </div>
                         </div>
                     </div>
@@ -78,21 +78,21 @@
                         <div class="field">
                             <label>Address*</label>
                             <div class="control">
-                                <input type="text" class="input" v-model="address">
+                                <input type="text" class="input" v-model="address" aria-label="Enter Address Field">
                             </div>
                         </div>
 
                         <div class="field">
                             <label>Zip code*</label>
                             <div class="control">
-                                <input type="text" class="input" v-model="zipcode">
+                                <input type="text" class="input" v-model="zipcode" aria-label="Enter Zip Code Field">
                             </div>
                         </div>
 
                         <div class="field">
-                            <label>Place*</label>
+                            <label>City/State*</label>
                             <div class="control">
-                                <input type="text" class="input" v-model="place">
+                                <input type="text" class="input" v-model="place" aria-label="Enter City and state Field">
                             </div>
                         </div>
                     </div>
@@ -164,30 +164,37 @@ export default {
 
             if (this.first_name === '') {
                 this.errors.push('The first name field is missing!')
+                notificationAlert('The first name field is missing!')
             }
 
             if (this.last_name === '') {
                 this.errors.push('The last name field is missing!')
+                notificationAlert('The last name field is missing!')
             }
 
             if (this.email === '') {
                 this.errors.push('The email field is missing!')
+                notificationAlert('The email field is missing!')
             }
 
             if (this.phone === '') {
                 this.errors.push('The phone field is missing!')
+                notificationAlert('The phone field is missing!')
             }
 
             if (this.address === '') {
                 this.errors.push('The address field is missing!')
+                notificationAlert('The address field is missing!')
             }
 
             if (this.zipcode === '') {
                 this.errors.push('The zip code field is missing!')
+                notificationAlert('The zip code field is missing!')
             }
 
             if (this.place === '') {
-                this.errors.push('The place field is missing!')
+                this.errors.push('The city/state field is missing!')
+                notificationAlert('The city/state field is missing!')
             }
 
             if (!this.errors.length) {
@@ -263,5 +270,12 @@ export default {
             }, 0)
         }
     }
+}
+
+function notificationAlert(message){
+    let liveRegion = document.getElementById('live-region');
+    liveRegion.textContent = message;
+    liveRegion.setAttribute('aria-live', 'assertive');
+    liveRegion.focus();
 }
 </script>

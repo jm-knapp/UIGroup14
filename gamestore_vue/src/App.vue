@@ -36,6 +36,7 @@
                                     placeholder="Search!"
                                     name="query"
                                     style="width: 500px"
+                                    aria-label="Input search field"
                                 />
                             </div>
 
@@ -51,19 +52,19 @@
                 </div>
 
                 <div class="navbar-end">
-                    <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-item has-dropdown is-hoverable" aria-describedby="Categories dropdown list">
                         <a class="navbar-link"> Categories </a>
 
                         <div class="navbar-dropdown">
-                            <router-link to="/AllProducts" class="navbar-item"
+                            <router-link to="/AllProducts" class="navbar-item" aria-describedby="All Products Category"
                                 >All Products</router-link>
-                            <router-link to="/Cosmetics" class="navbar-item"
+                            <router-link to="/Cosmetics" class="navbar-item" aria-describedby="Cosmetic Items Category"
                                 >Cosmetics</router-link>
-                            <router-link to="/Boosts" class="navbar-item"
+                            <router-link to="/Boosts" class="navbar-item" aria-describedby="Boost Items Category"
                                 >Boosts</router-link>
-                            <router-link to="/Consumables" class="navbar-item"
+                            <router-link to="/Consumables" class="navbar-item" aria-describedby="Consumable Items Category"
                                 >Consumables</router-link>
-                            <router-link to="/weapons" class="navbar-item"
+                            <router-link to="/weapons" class="navbar-item" aria-describedby="Weapons Category"
                                 >Weapons</router-link>
                         </div>
                     </div>
@@ -96,6 +97,7 @@
         </nav>
 
         <div
+            id="live-region" 
             class="is-loading-bar has-text-centered"
             v-bind:class="{ 'is-loading': $store.state.isLoading }"
         >

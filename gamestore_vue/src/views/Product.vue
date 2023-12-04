@@ -86,7 +86,17 @@ export default {
                 duration: 2000,
                 position: 'bottom-right',
             })
+            notificationAlert(this.product.name + ' added to cart!')
+
         }
     }
 }
+
+function notificationAlert(message){
+    let liveRegion = document.getElementById('live-region');
+    liveRegion.textContent = message;
+    liveRegion.setAttribute('aria-live', 'assertive');
+    liveRegion.focus();
+}
 </script>
+

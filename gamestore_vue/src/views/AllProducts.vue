@@ -54,8 +54,10 @@ export default {
             const sorted = [...this.products];
             if (this.sortOption === "lowestToHighest") {
                 sorted.sort((a, b) => a.price - b.price);
+                notificationAlert('Sorted lowest to highest')
             } else if (this.sortOption === "highestToLowest") {
                 sorted.sort((a, b) => b.price - a.price);
+                notificationAlert('Sorted highest to lowest')
             }
             return sorted;
         },
@@ -77,4 +79,11 @@ export default {
         },
     },
 };
+
+function notificationAlert(message){
+    let liveRegion = document.getElementById('live-region');
+    liveRegion.textContent = message;
+    liveRegion.setAttribute('aria-live', 'assertive');
+    liveRegion.focus();
+}
 </script>
