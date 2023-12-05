@@ -60,7 +60,7 @@ export default {
     },
     computed: {
         sortedProducts() {
-            const sorted = [...this.products];
+            const sorted = [...this.category.products];
             if (this.sortOption === "lowestToHighest") {
                 sorted.sort((a, b) => a.price - b.price);
                 notificationAlert('Sorted lowest to highest')
